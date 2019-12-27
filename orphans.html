@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>matomo Database</title>
+        <!-- Tell the browser to be responsive to screen width -->
+        <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+        <link rel="icon" type="image/png" sizes="16x16" href="favicon.png">
+        <!-- Bootstrap 3.3.5 -->
+        <link rel="stylesheet" href="bower/admin-lte/bootstrap/css/bootstrap.min.css">
+        <!-- Font Awesome -->
+        <link rel="stylesheet" href="bower/font-awesome/css/font-awesome.min.css">
+        <!-- Ionicons -->
+        <link rel="stylesheet" href="bower/ionicons/css/ionicons.min.css">
+        <!-- DataTables -->
+        <link rel="stylesheet" href="bower/datatables.net-bs/css/dataTables.bootstrap.min.css">
+        <link rel="stylesheet" href="bower/datatables.net-buttons-bs/css/buttons.bootstrap.min.css">
+        <!-- Code Mirror -->
+        <link rel="stylesheet" href="bower/codemirror/codemirror.css">
+        <!-- Fonts -->
+        <link href='fonts/indieflower/indie-flower.css' rel='stylesheet' type='text/css'>
+        <link href='fonts/source-sans-pro/source-sans-pro.css' rel='stylesheet' type='text/css'>
+
+        <!-- Theme style -->
+        <link rel="stylesheet" href="bower/admin-lte/dist/css/AdminLTE.min.css">
+        <!-- Salvattore -->
+        <link rel="stylesheet" href="bower/salvattore/salvattore.css">
+        <!-- AdminLTE Skins. Choose a skin from the css/skins
+           folder instead of downloading all of them to reduce the load. -->
+        <link rel="stylesheet" href="bower/admin-lte/dist/css/skins/_all-skins.min.css">
+        <!-- SchemaSpy -->
+        <link rel="stylesheet" href="schemaSpy.css">
+
+        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+        <script src="bower/html5shiv/html5shiv.min.js"></script>
+        <script src="bower/respond/respond.min.js"></script>
+        <![endif]-->
+    </head>
+    <!-- ADD THE CLASS layout-top-nav TO REMOVE THE SIDEBAR. -->
+    <body class="hold-transition skin-blue layout-top-nav">
+        <div class="wrapper">
+            <header class="main-header">
+                <nav class="navbar navbar-static-top">
+                    <div class="container">
+                        <div class="navbar-header">
+                            <a href="index.html" class="navbar-brand"><b>matomo</b> Database</a>
+                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse"><i class="fa fa-bars"></i></button>
+                        </div>
+
+                        <!-- Collect the nav links, forms, and other content for toggling -->
+                        <div class="collapse navbar-collapse pull-left" id="navbar-collapse">
+                            <ul class="nav navbar-nav">
+                                <li><a href="index.html">Tables <span class="sr-only">(current)</span></a></li>
+                                <li><a href="columns.html" title="All of the columns in the schema">Columns</a></li>
+                                <li><a href="constraints.html" title="Useful for diagnosing error messages that just give constraint name or number">Constraints</a></li>
+                                <li><a href="relationships.html" title="Diagram of table relationships">Relationships</a></li>
+                                <li><a href="orphans.html" title="View of tables with neither parents nor children">Orphan&nbsp;Tables</a></li>
+                                <li><a href="anomalies.html" title="Things that might not be quite right">Anomalies</a></li>
+                                <li><a href="routines.html" title="Procedures and functions">Routines</a></li>
+                            </ul>
+                        </div>
+                        <!-- /.navbar-collapse -->
+                        <!-- Navbar Right Menu -->
+                    </div>
+                    <!-- /.container-fluid -->
+                </nav>
+            </header>
+            <!-- Main content -->
+            <!-- Full Width Column -->
+            <div class="content-wrapper">
+                <!-- Content Header (Page header) -->
+                <section class="content-header">
+                    <h1>Utility Tables</h1>
+                </section>
+                <!-- Main content -->
+                <section class="content">
+                    <div class="box box-primary">
+                        <div class="box-header with-border">
+                            <i class="fa fa-code-fork"></i>
+                            <h3 class="box-title">Orphan Tables</h3>
+                        </div>
+                        <div class="box-body">
+                            <div id="grid" data-columns>
+                                <div class="item">
+                                    <img id="matomo_sequenceDegreeImg" src="diagrams/orphans/matomo_sequence.1degree.png" usemap="#matomo_sequence" style="max-width:100%;" border="0" align="top">
+                                </div>
+                                <div class="item">
+                                    <img id="matomo_site_urlDegreeImg" src="diagrams/orphans/matomo_site_url.1degree.png" usemap="#matomo_site_url" style="max-width:100%;" border="0" align="top">
+                                </div>
+                                <div class="item">
+                                    <img id="matomo_brute_force_logDegreeImg" src="diagrams/orphans/matomo_brute_force_log.1degree.png" usemap="#matomo_brute_force_log" style="max-width:100%;" border="0" align="top">
+                                </div>
+                                <div class="item">
+                                    <img id="matomo_locksDegreeImg" src="diagrams/orphans/matomo_locks.1degree.png" usemap="#matomo_locks" style="max-width:100%;" border="0" align="top">
+                                </div>
+                                <div class="item">
+                                    <img id="matomo_optionDegreeImg" src="diagrams/orphans/matomo_option.1degree.png" usemap="#matomo_option" style="max-width:100%;" border="0" align="top">
+                                </div>
+                                <div class="item">
+                                    <img id="matomo_twofactor_recovery_codeDegreeImg" src="diagrams/orphans/matomo_twofactor_recovery_code.1degree.png" usemap="#matomo_twofactor_recovery_code" style="max-width:100%;" border="0" align="top">
+                                </div>
+                                <div class="item">
+                                    <img id="matomo_user_languageDegreeImg" src="diagrams/orphans/matomo_user_language.1degree.png" usemap="#matomo_user_language" style="max-width:100%;" border="0" align="top">
+                                </div>
+                                <div class="item">
+                                    <img id="matomo_accessDegreeImg" src="diagrams/orphans/matomo_access.1degree.png" usemap="#matomo_access" style="max-width:100%;" border="0" align="top">
+                                </div>
+                                <div class="item">
+                                    <img id="matomo_log_profilingDegreeImg" src="diagrams/orphans/matomo_log_profiling.1degree.png" usemap="#matomo_log_profiling" style="max-width:100%;" border="0" align="top">
+                                </div>
+                                <div class="item">
+                                    <img id="matomo_sessionDegreeImg" src="diagrams/orphans/matomo_session.1degree.png" usemap="#matomo_session" style="max-width:100%;" border="0" align="top">
+                                </div>
+                                <div class="item">
+                                    <img id="matomo_tracking_failureDegreeImg" src="diagrams/orphans/matomo_tracking_failure.1degree.png" usemap="#matomo_tracking_failure" style="max-width:100%;" border="0" align="top">
+                                </div>
+                                <div class="item">
+                                    <img id="matomo_user_dashboardDegreeImg" src="diagrams/orphans/matomo_user_dashboard.1degree.png" usemap="#matomo_user_dashboard" style="max-width:100%;" border="0" align="top">
+                                </div>
+                                <div class="item">
+                                    <img id="matomo_log_actionDegreeImg" src="diagrams/orphans/matomo_log_action.1degree.png" usemap="#matomo_log_action" style="max-width:100%;" border="0" align="top">
+                                </div>
+                                <div class="item">
+                                    <img id="matomo_logger_messageDegreeImg" src="diagrams/orphans/matomo_logger_message.1degree.png" usemap="#matomo_logger_message" style="max-width:100%;" border="0" align="top">
+                                </div>
+                                <div class="item">
+                                    <img id="matomo_report_subscriptionsDegreeImg" src="diagrams/orphans/matomo_report_subscriptions.1degree.png" usemap="#matomo_report_subscriptions" style="max-width:100%;" border="0" align="top">
+                                </div>
+                                <div class="item">
+                                    <img id="matomo_plugin_settingDegreeImg" src="diagrams/orphans/matomo_plugin_setting.1degree.png" usemap="#matomo_plugin_setting" style="max-width:100%;" border="0" align="top">
+                                </div>
+                                <div class="item">
+                                    <img id="matomo_site_settingDegreeImg" src="diagrams/orphans/matomo_site_setting.1degree.png" usemap="#matomo_site_setting" style="max-width:100%;" border="0" align="top">
+                                </div>
+                                <div class="item">
+                                    <img id="matomo_archive_blob_2019_12DegreeImg" src="diagrams/orphans/matomo_archive_blob_2019_12.1degree.png" usemap="#matomo_archive_blob_2019_12" style="max-width:100%;" border="0" align="top">
+                                </div>
+                                <div class="item">
+                                    <img id="matomo_archive_numeric_2019_12DegreeImg" src="diagrams/orphans/matomo_archive_numeric_2019_12.1degree.png" usemap="#matomo_archive_numeric_2019_12" style="max-width:100%;" border="0" align="top">
+                                </div>
+                                <div class="item">
+                                    <img id="matomo_userDegreeImg" src="diagrams/orphans/matomo_user.1degree.png" usemap="#matomo_user" style="max-width:100%;" border="0" align="top">
+                                </div>
+                                <div class="item">
+                                    <img id="matomo_segmentDegreeImg" src="diagrams/orphans/matomo_segment.1degree.png" usemap="#matomo_segment" style="max-width:100%;" border="0" align="top">
+                                </div>
+                                <div class="item">
+                                    <img id="matomo_goalDegreeImg" src="diagrams/orphans/matomo_goal.1degree.png" usemap="#matomo_goal" style="max-width:100%;" border="0" align="top">
+                                </div>
+                                <div class="item">
+                                    <img id="matomo_privacy_logdata_anonymizationsDegreeImg" src="diagrams/orphans/matomo_privacy_logdata_anonymizations.1degree.png" usemap="#matomo_privacy_logdata_anonymizations" style="max-width:100%;" border="0" align="top">
+                                </div>
+                                <div class="item">
+                                    <img id="matomo_log_conversion_itemDegreeImg" src="diagrams/orphans/matomo_log_conversion_item.1degree.png" usemap="#matomo_log_conversion_item" style="max-width:100%;" border="0" align="top">
+                                </div>
+                                <div class="item">
+                                    <img id="matomo_reportDegreeImg" src="diagrams/orphans/matomo_report.1degree.png" usemap="#matomo_report" style="max-width:100%;" border="0" align="top">
+                                </div>
+                                <div class="item">
+                                    <img id="matomo_siteDegreeImg" src="diagrams/orphans/matomo_site.1degree.png" usemap="#matomo_site" style="max-width:100%;" border="0" align="top">
+                                </div>
+                                <div class="item">
+                                    <img id="matomo_log_link_visit_actionDegreeImg" src="diagrams/orphans/matomo_log_link_visit_action.1degree.png" usemap="#matomo_log_link_visit_action" style="max-width:100%;" border="0" align="top">
+                                </div>
+                                <div class="item">
+                                    <img id="matomo_log_conversionDegreeImg" src="diagrams/orphans/matomo_log_conversion.1degree.png" usemap="#matomo_log_conversion" style="max-width:100%;" border="0" align="top">
+                                </div>
+                                <div class="item">
+                                    <img id="matomo_log_visitDegreeImg" src="diagrams/orphans/matomo_log_visit.1degree.png" usemap="#matomo_log_visit" style="max-width:100%;" border="0" align="top">
+                                </div>
+                            </div>
+                            <map id="matomo_sequence" name="matomo_sequence">
+<area shape="rect" id="node1" href="tables/matomo_sequence.html" target="_top" title="matomo_sequence" alt="" coords="5,5,335,131">
+</map><map id="matomo_site_url" name="matomo_site_url">
+<area shape="rect" id="node1" href="tables/matomo_site_url.html" target="_top" title="matomo_site_url" alt="" coords="5,5,299,131">
+</map><map id="matomo_brute_force_log" name="matomo_brute_force_log">
+<area shape="rect" id="node1" href="tables/matomo_brute_force_log.html" target="_top" title="matomo_brute_force_log" alt="" coords="5,5,340,160">
+</map><map id="matomo_locks" name="matomo_locks">
+<area shape="rect" id="node1" href="tables/matomo_locks.html" target="_top" title="matomo_locks" alt="" coords="5,5,303,160">
+</map><map id="matomo_option" name="matomo_option">
+<area shape="rect" id="node1" href="tables/matomo_option.html" target="_top" title="matomo_option" alt="" coords="5,5,327,160">
+</map><map id="matomo_twofactor_recovery_code" name="matomo_twofactor_recovery_code">
+<area shape="rect" id="node1" href="tables/matomo_twofactor_recovery_code.html" target="_top" title="matomo_twofactor_recovery_code" alt="" coords="5,5,455,160">
+</map><map id="matomo_user_language" name="matomo_user_language">
+<area shape="rect" id="node1" href="tables/matomo_user_language.html" target="_top" title="matomo_user_language" alt="" coords="5,5,333,160">
+</map><map id="matomo_access" name="matomo_access">
+<area shape="rect" id="node1" href="tables/matomo_access.html" target="_top" title="matomo_access" alt="" coords="5,5,295,189">
+</map><map id="matomo_log_profiling" name="matomo_log_profiling">
+<area shape="rect" id="node1" href="tables/matomo_log_profiling.html" target="_top" title="matomo_log_profiling" alt="" coords="5,5,359,189">
+</map><map id="matomo_session" name="matomo_session">
+<area shape="rect" id="node1" href="tables/matomo_session.html" target="_top" title="matomo_session" alt="" coords="5,5,280,189">
+</map><map id="matomo_tracking_failure" name="matomo_tracking_failure">
+<area shape="rect" id="node1" href="tables/matomo_tracking_failure.html" target="_top" title="matomo_tracking_failure" alt="" coords="5,5,405,189">
+</map><map id="matomo_user_dashboard" name="matomo_user_dashboard">
+<area shape="rect" id="node1" href="tables/matomo_user_dashboard.html" target="_top" title="matomo_user_dashboard" alt="" coords="5,5,344,189">
+</map><map id="matomo_log_action" name="matomo_log_action">
+<area shape="rect" id="node1" href="tables/matomo_log_action.html" target="_top" title="matomo_log_action" alt="" coords="5,5,336,219">
+</map><map id="matomo_logger_message" name="matomo_logger_message">
+<area shape="rect" id="node1" href="tables/matomo_logger_message.html" target="_top" title="matomo_logger_message" alt="" coords="5,5,368,219">
+</map><map id="matomo_report_subscriptions" name="matomo_report_subscriptions">
+<area shape="rect" id="node1" href="tables/matomo_report_subscriptions.html" target="_top" title="matomo_report_subscriptions" alt="" coords="5,5,391,219">
+</map><map id="matomo_plugin_setting" name="matomo_plugin_setting">
+<area shape="rect" id="node1" href="tables/matomo_plugin_setting.html" target="_top" title="matomo_plugin_setting" alt="" coords="5,5,388,248">
+</map><map id="matomo_site_setting" name="matomo_site_setting">
+<area shape="rect" id="node1" href="tables/matomo_site_setting.html" target="_top" title="matomo_site_setting" alt="" coords="5,5,368,248">
+</map><map id="matomo_archive_blob_2019_12" name="matomo_archive_blob_2019_12">
+<area shape="rect" id="node1" href="tables/matomo_archive_blob_2019_12.html" target="_top" title="matomo_archive_blob_2019_12" alt="" coords="5,5,460,307">
+</map><map id="matomo_archive_numeric_2019_12" name="matomo_archive_numeric_2019_12">
+<area shape="rect" id="node1" href="tables/matomo_archive_numeric_2019_12.html" target="_top" title="matomo_archive_numeric_2019_12" alt="" coords="5,5,455,307">
+</map><map id="matomo_user" name="matomo_user">
+<area shape="rect" id="node1" href="tables/matomo_user.html" target="_top" title="matomo_user" alt="" coords="5,5,359,336">
+</map><map id="matomo_segment" name="matomo_segment">
+<area shape="rect" id="node1" href="tables/matomo_segment.html" target="_top" title="matomo_segment" alt="" coords="5,5,303,365">
+</map><map id="matomo_goal" name="matomo_goal">
+<area shape="rect" id="node1" href="tables/matomo_goal.html" target="_top" title="matomo_goal" alt="" coords="5,5,337,424">
+</map><map id="matomo_privacy_logdata_anonymizations" name="matomo_privacy_logdata_anonymizations">
+<area shape="rect" id="node1" href="tables/matomo_privacy_logdata_anonymizations.html" target="_top" title="matomo_privacy_logdata_anonymizations" alt="" coords="5,5,539,483">
+</map><map id="matomo_log_conversion_item" name="matomo_log_conversion_item">
+<area shape="rect" id="node1" href="tables/matomo_log_conversion_item.html" target="_top" title="matomo_log_conversion_item" alt="" coords="5,5,421,512">
+</map><map id="matomo_report" name="matomo_report">
+<area shape="rect" id="node1" href="tables/matomo_report.html" target="_top" title="matomo_report" alt="" coords="5,5,397,571">
+</map><map id="matomo_site" name="matomo_site">
+<area shape="rect" id="node1" href="tables/matomo_site.html" target="_top" title="matomo_site" alt="" coords="5,5,420,600">
+</map><map id="matomo_log_link_visit_action" name="matomo_log_link_visit_action">
+<area shape="rect" id="node1" href="tables/matomo_log_link_visit_action.html" target="_top" title="matomo_log_link_visit_action" alt="" coords="5,5,425,923">
+</map><map id="matomo_log_conversion" name="matomo_log_conversion">
+<area shape="rect" id="node1" href="tables/matomo_log_conversion.html" target="_top" title="matomo_log_conversion" alt="" coords="5,5,389,1275">
+</map><map id="matomo_log_visit" name="matomo_log_visit">
+<area shape="rect" id="node1" href="tables/matomo_log_visit.html" target="_top" title="matomo_log_visit" alt="" coords="5,5,397,1949">
+</map>
+                        </div>
+                    </div>
+                </section>
+            </div>
+            <!-- /.content-wrapper -->
+            <footer class="main-footer">
+                <div>
+                    <div class="pull-right hidden-xs">
+                        <a href="https://github.com/schemaspy/schemaspy" title="GitHub for SchemaSpy"><i class="fa fa-github-square fa-2x"></i></a>
+                        <a href="http://stackoverflow.com/questions/tagged/schemaspy" title="StackOverflow for SchemaSpy"><i class="fa fa-stack-overflow fa-2x"></i></a>
+                    </div>
+                    <strong>Generated by <a href="http://schemaspy.org/" class="logo-text"><i class="fa fa-database"></i> SchemaSpy 6.1.0</a></strong>
+                </div>
+                <!-- /.container -->
+            </footer>
+        </div>
+        <!-- ./wrapper -->
+
+        <!-- jQuery 2.2.3 -->
+        <script src="bower/admin-lte/plugins/jQuery/jquery-2.2.3.min.js"></script>
+        <script src="bower/admin-lte/plugins/jQueryUI/jquery-ui.min.js"></script>
+        <!-- Bootstrap 3.3.5 -->
+        <script src="bower/admin-lte/bootstrap/js/bootstrap.min.js"></script>
+        <!-- DataTables -->
+        <script src="bower/datatables.net/jquery.dataTables.min.js"></script>
+        <script src="bower/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+        <script src="bower/datatables.net-buttons/dataTables.buttons.min.js"></script>
+        <script src="bower/datatables.net-buttons-bs/js/buttons.bootstrap.min.js"></script>
+        <script src="bower/datatables.net-buttons/buttons.html5.min.js"></script>
+        <script src="bower/datatables.net-buttons/buttons.print.min.js"></script>
+        <script src="bower/datatables.net-buttons/buttons.colVis.min.js"></script>
+        <!-- SheetJS -->
+        <script src="bower/js-xlsx/xlsx.full.min.js"></script>
+        <!-- pdfmake -->
+        <script src="bower/pdfmake/pdfmake.min.js"></script>
+        <script src="bower/pdfmake/vfs_fonts.js"></script>
+        <!-- SlimScroll -->
+        <script src="bower/admin-lte/plugins/slimScroll/jquery.slimscroll.min.js"></script>
+        <!-- FastClick -->
+        <script src="bower/admin-lte/plugins/fastclick/fastclick.js"></script>
+        <!-- Salvattore -->
+        <script src="bower/salvattore/salvattore.min.js"></script>
+        <!-- AnchorJS -->
+        <script src="bower/anchor-js/anchor.min.js"></script>
+        <!-- CodeMirror -->
+        <script src="bower/codemirror/codemirror.js"></script>
+        <script src="bower/codemirror/sql.js"></script>
+        <!-- AdminLTE App -->
+        <script src="bower/admin-lte/dist/js/app.min.js"></script>
+        <script src=""></script>
+        <script src="schemaSpy.js"></script>
+    </body>
+</html>

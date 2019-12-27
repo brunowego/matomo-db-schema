@@ -1,0 +1,636 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<database name="matomo" schema="matomo" type="MySQL - 5.7.28">
+   <tables>
+      <table catalog="matomo" name="matomo_access" numRows="0" remarks="" type="TABLE">
+         <column autoUpdated="true" defaultValue="null" digits="0" id="0" name="idaccess" nullable="false" remarks="" size="10" type="INT UNSIGNED" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="login" nullable="false" remarks="" size="100" type="VARCHAR" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="idsite" nullable="false" remarks="" size="10" type="INT UNSIGNED" typeCode="4">
+            <parent catalog="matomo" column="idsite" foreignKey="Implied Constraint" implied="true" onDeleteCascade="false" table="matomo_site"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="access" nullable="true" remarks="" size="50" type="VARCHAR" typeCode="12"/>
+         <primaryKey column="idaccess" sequenceNumberInPK="1"/>
+         <index name="PRIMARY" unique="true">
+            <column ascending="true" name="idaccess"/>
+         </index>
+         <index name="index_loginidsite" unique="false">
+            <column ascending="true" name="login"/>
+            <column ascending="true" name="idsite"/>
+         </index>
+      </table>
+      <table catalog="matomo" name="matomo_archive_blob_2019_12" numRows="0" remarks="" type="TABLE">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="idarchive" nullable="false" remarks="" size="10" type="INT UNSIGNED" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="name" nullable="false" remarks="" size="255" type="VARCHAR" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="idsite" nullable="true" remarks="" size="10" type="INT UNSIGNED" typeCode="4">
+            <parent catalog="matomo" column="idsite" foreignKey="Implied Constraint" implied="true" onDeleteCascade="false" table="matomo_site"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="date1" nullable="true" remarks="" size="10" type="DATE" typeCode="91"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="4" name="date2" nullable="true" remarks="" size="10" type="DATE" typeCode="91"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="5" name="period" nullable="true" remarks="" size="3" type="TINYINT UNSIGNED" typeCode="-6"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="6" name="ts_archived" nullable="true" remarks="" size="19" type="DATETIME" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="7" name="value" nullable="true" remarks="" size="16777215" type="MEDIUMBLOB" typeCode="-4"/>
+         <primaryKey column="idarchive" sequenceNumberInPK="1"/>
+         <primaryKey column="name" sequenceNumberInPK="2"/>
+         <index name="PRIMARY" unique="true">
+            <column ascending="true" name="idarchive"/>
+            <column ascending="true" name="name"/>
+         </index>
+         <index name="index_period_archived" unique="false">
+            <column ascending="true" name="period"/>
+            <column ascending="true" name="ts_archived"/>
+         </index>
+      </table>
+      <table catalog="matomo" name="matomo_archive_numeric_2019_12" numRows="16" remarks="" type="TABLE">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="idarchive" nullable="false" remarks="" size="10" type="INT UNSIGNED" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="name" nullable="false" remarks="" size="255" type="VARCHAR" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="idsite" nullable="true" remarks="" size="10" type="INT UNSIGNED" typeCode="4">
+            <parent catalog="matomo" column="idsite" foreignKey="Implied Constraint" implied="true" onDeleteCascade="false" table="matomo_site"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="date1" nullable="true" remarks="" size="10" type="DATE" typeCode="91"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="4" name="date2" nullable="true" remarks="" size="10" type="DATE" typeCode="91"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="5" name="period" nullable="true" remarks="" size="3" type="TINYINT UNSIGNED" typeCode="-6"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="6" name="ts_archived" nullable="true" remarks="" size="19" type="DATETIME" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="7" name="value" nullable="true" remarks="" size="22" type="DOUBLE" typeCode="8"/>
+         <primaryKey column="idarchive" sequenceNumberInPK="1"/>
+         <primaryKey column="name" sequenceNumberInPK="2"/>
+         <index name="PRIMARY" unique="true">
+            <column ascending="true" name="idarchive"/>
+            <column ascending="true" name="name"/>
+         </index>
+         <index name="index_idsite_dates_period" unique="false">
+            <column ascending="true" name="idsite"/>
+            <column ascending="true" name="date1"/>
+            <column ascending="true" name="date2"/>
+            <column ascending="true" name="period"/>
+            <column ascending="true" name="ts_archived"/>
+         </index>
+         <index name="index_period_archived" unique="false">
+            <column ascending="true" name="period"/>
+            <column ascending="true" name="ts_archived"/>
+         </index>
+      </table>
+      <table catalog="matomo" name="matomo_brute_force_log" numRows="0" remarks="" type="TABLE">
+         <column autoUpdated="true" defaultValue="null" digits="0" id="0" name="id_brute_force_log" nullable="false" remarks="" size="19" type="BIGINT" typeCode="-5"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="ip_address" nullable="true" remarks="" size="60" type="VARCHAR" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="attempted_at" nullable="false" remarks="" size="19" type="DATETIME" typeCode="93"/>
+         <primaryKey column="id_brute_force_log" sequenceNumberInPK="1"/>
+         <index name="PRIMARY" unique="true">
+            <column ascending="true" name="id_brute_force_log"/>
+         </index>
+         <index name="index_ip_address" unique="false">
+            <column ascending="true" name="ip_address"/>
+         </index>
+      </table>
+      <table catalog="matomo" name="matomo_goal" numRows="0" remarks="" type="TABLE">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="idsite" nullable="false" remarks="" size="10" type="INT" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="idgoal" nullable="false" remarks="" size="10" type="INT" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="name" nullable="false" remarks="" size="50" type="VARCHAR" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="" digits="0" id="3" name="description" nullable="false" remarks="" size="255" type="VARCHAR" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="4" name="match_attribute" nullable="false" remarks="" size="20" type="VARCHAR" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="5" name="pattern" nullable="false" remarks="" size="255" type="VARCHAR" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="6" name="pattern_type" nullable="false" remarks="" size="25" type="VARCHAR" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="7" name="case_sensitive" nullable="false" remarks="" size="3" type="TINYINT" typeCode="-6"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="8" name="allow_multiple" nullable="false" remarks="" size="3" type="TINYINT" typeCode="-6"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="9" name="revenue" nullable="false" remarks="" size="12" type="FLOAT" typeCode="7"/>
+         <column autoUpdated="false" defaultValue="0" digits="0" id="10" name="deleted" nullable="false" remarks="" size="3" type="TINYINT" typeCode="-6"/>
+         <column autoUpdated="false" defaultValue="0" digits="0" id="11" name="event_value_as_revenue" nullable="false" remarks="" size="3" type="TINYINT" typeCode="-6"/>
+         <primaryKey column="idgoal" sequenceNumberInPK="1"/>
+         <primaryKey column="idsite" sequenceNumberInPK="2"/>
+         <index name="PRIMARY" unique="true">
+            <column ascending="true" name="idsite"/>
+            <column ascending="true" name="idgoal"/>
+         </index>
+      </table>
+      <table catalog="matomo" name="matomo_locks" numRows="0" remarks="" type="TABLE">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="key" nullable="false" remarks="" size="70" type="VARCHAR" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="value" nullable="true" remarks="" size="255" type="VARCHAR" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="9999999999" digits="0" id="2" name="expiry_time" nullable="true" remarks="" size="20" type="BIGINT UNSIGNED" typeCode="-5"/>
+         <primaryKey column="key" sequenceNumberInPK="1"/>
+         <index name="PRIMARY" unique="true">
+            <column ascending="true" name="key"/>
+         </index>
+      </table>
+      <table catalog="matomo" name="matomo_log_action" numRows="0" remarks="" type="TABLE">
+         <column autoUpdated="true" defaultValue="null" digits="0" id="0" name="idaction" nullable="false" remarks="" size="10" type="INT UNSIGNED" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="name" nullable="true" remarks="" size="4096" type="VARCHAR" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="hash" nullable="false" remarks="" size="10" type="INT UNSIGNED" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="type" nullable="true" remarks="" size="3" type="TINYINT UNSIGNED" typeCode="-6"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="4" name="url_prefix" nullable="true" remarks="" size="3" type="TINYINT" typeCode="-6"/>
+         <primaryKey column="idaction" sequenceNumberInPK="1"/>
+         <index name="PRIMARY" unique="true">
+            <column ascending="true" name="idaction"/>
+         </index>
+         <index name="index_type_hash" unique="false">
+            <column ascending="true" name="type"/>
+            <column ascending="true" name="hash"/>
+         </index>
+      </table>
+      <table catalog="matomo" name="matomo_log_conversion" numRows="0" remarks="" type="TABLE">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="idvisit" nullable="false" remarks="" size="20" type="BIGINT UNSIGNED" typeCode="-5"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="idsite" nullable="false" remarks="" size="10" type="INT UNSIGNED" typeCode="4">
+            <parent catalog="matomo" column="idsite" foreignKey="Implied Constraint" implied="true" onDeleteCascade="false" table="matomo_site"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="idvisitor" nullable="false" remarks="" size="8" type="BINARY" typeCode="-2"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="server_time" nullable="false" remarks="" size="19" type="DATETIME" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="4" name="idaction_url" nullable="true" remarks="" size="10" type="INT UNSIGNED" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="5" name="idlink_va" nullable="true" remarks="" size="20" type="BIGINT UNSIGNED" typeCode="-5">
+            <parent catalog="matomo" column="idlink_va" foreignKey="Implied Constraint" implied="true" onDeleteCascade="false" table="matomo_log_link_visit_action"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="6" name="idgoal" nullable="false" remarks="" size="10" type="INT" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="7" name="buster" nullable="false" remarks="" size="10" type="INT UNSIGNED" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="8" name="idorder" nullable="true" remarks="" size="100" type="VARCHAR" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="9" name="items" nullable="true" remarks="" size="5" type="SMALLINT UNSIGNED" typeCode="5"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="10" name="url" nullable="false" remarks="" size="4096" type="VARCHAR" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="11" name="visitor_days_since_first" nullable="true" remarks="" size="5" type="SMALLINT UNSIGNED" typeCode="5"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="12" name="visitor_days_since_order" nullable="true" remarks="" size="5" type="SMALLINT UNSIGNED" typeCode="5"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="13" name="visitor_returning" nullable="true" remarks="" size="0" type="BIT" typeCode="-7"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="14" name="visitor_count_visits" nullable="false" remarks="" size="10" type="INT UNSIGNED" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="15" name="referer_keyword" nullable="true" remarks="" size="255" type="VARCHAR" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="16" name="referer_name" nullable="true" remarks="" size="70" type="VARCHAR" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="17" name="referer_type" nullable="true" remarks="" size="0" type="BIT" typeCode="-7"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="18" name="config_device_brand" nullable="true" remarks="" size="100" type="VARCHAR" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="19" name="config_device_model" nullable="true" remarks="" size="100" type="VARCHAR" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="20" name="config_device_type" nullable="true" remarks="" size="3" type="TINYINT" typeCode="-6"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="21" name="location_city" nullable="true" remarks="" size="255" type="VARCHAR" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="22" name="location_country" nullable="true" remarks="" size="3" type="CHAR" typeCode="1"/>
+         <column autoUpdated="false" defaultValue="null" digits="6" id="23" name="location_latitude" nullable="true" remarks="" size="9" type="DECIMAL" typeCode="3"/>
+         <column autoUpdated="false" defaultValue="null" digits="6" id="24" name="location_longitude" nullable="true" remarks="" size="9" type="DECIMAL" typeCode="3"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="25" name="location_region" nullable="true" remarks="" size="3" type="CHAR" typeCode="1"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="26" name="revenue" nullable="true" remarks="" size="12" type="FLOAT" typeCode="7"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="27" name="revenue_discount" nullable="true" remarks="" size="12" type="FLOAT" typeCode="7"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="28" name="revenue_shipping" nullable="true" remarks="" size="12" type="FLOAT" typeCode="7"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="29" name="revenue_subtotal" nullable="true" remarks="" size="12" type="FLOAT" typeCode="7"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="30" name="revenue_tax" nullable="true" remarks="" size="12" type="FLOAT" typeCode="7"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="31" name="custom_var_k1" nullable="true" remarks="" size="200" type="VARCHAR" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="32" name="custom_var_v1" nullable="true" remarks="" size="200" type="VARCHAR" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="33" name="custom_var_k2" nullable="true" remarks="" size="200" type="VARCHAR" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="34" name="custom_var_v2" nullable="true" remarks="" size="200" type="VARCHAR" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="35" name="custom_var_k3" nullable="true" remarks="" size="200" type="VARCHAR" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="36" name="custom_var_v3" nullable="true" remarks="" size="200" type="VARCHAR" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="37" name="custom_var_k4" nullable="true" remarks="" size="200" type="VARCHAR" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="38" name="custom_var_v4" nullable="true" remarks="" size="200" type="VARCHAR" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="39" name="custom_var_k5" nullable="true" remarks="" size="200" type="VARCHAR" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="40" name="custom_var_v5" nullable="true" remarks="" size="200" type="VARCHAR" typeCode="12"/>
+         <primaryKey column="buster" sequenceNumberInPK="1"/>
+         <primaryKey column="idgoal" sequenceNumberInPK="2"/>
+         <primaryKey column="idvisit" sequenceNumberInPK="3"/>
+         <index name="PRIMARY" unique="true">
+            <column ascending="true" name="idvisit"/>
+            <column ascending="true" name="idgoal"/>
+            <column ascending="true" name="buster"/>
+         </index>
+         <index name="index_idsite_datetime" unique="false">
+            <column ascending="true" name="idsite"/>
+            <column ascending="true" name="server_time"/>
+         </index>
+         <index name="unique_idsite_idorder" unique="true">
+            <column ascending="true" name="idsite"/>
+            <column ascending="true" name="idorder"/>
+         </index>
+      </table>
+      <table catalog="matomo" name="matomo_log_conversion_item" numRows="0" remarks="" type="TABLE">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="idsite" nullable="false" remarks="" size="10" type="INT UNSIGNED" typeCode="4">
+            <parent catalog="matomo" column="idsite" foreignKey="Implied Constraint" implied="true" onDeleteCascade="false" table="matomo_site"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="idvisitor" nullable="false" remarks="" size="8" type="BINARY" typeCode="-2"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="server_time" nullable="false" remarks="" size="19" type="DATETIME" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="idvisit" nullable="false" remarks="" size="20" type="BIGINT UNSIGNED" typeCode="-5"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="4" name="idorder" nullable="false" remarks="" size="100" type="VARCHAR" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="5" name="idaction_sku" nullable="false" remarks="" size="10" type="INT UNSIGNED" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="6" name="idaction_name" nullable="false" remarks="" size="10" type="INT UNSIGNED" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="7" name="idaction_category" nullable="false" remarks="" size="10" type="INT UNSIGNED" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="8" name="idaction_category2" nullable="false" remarks="" size="10" type="INT UNSIGNED" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="9" name="idaction_category3" nullable="false" remarks="" size="10" type="INT UNSIGNED" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="10" name="idaction_category4" nullable="false" remarks="" size="10" type="INT UNSIGNED" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="11" name="idaction_category5" nullable="false" remarks="" size="10" type="INT UNSIGNED" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="12" name="price" nullable="false" remarks="" size="12" type="FLOAT" typeCode="7"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="13" name="quantity" nullable="false" remarks="" size="10" type="INT UNSIGNED" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="14" name="deleted" nullable="false" remarks="" size="0" type="BIT" typeCode="-7"/>
+         <primaryKey column="idaction_sku" sequenceNumberInPK="1"/>
+         <primaryKey column="idorder" sequenceNumberInPK="2"/>
+         <primaryKey column="idvisit" sequenceNumberInPK="3"/>
+         <index name="PRIMARY" unique="true">
+            <column ascending="true" name="idvisit"/>
+            <column ascending="true" name="idorder"/>
+            <column ascending="true" name="idaction_sku"/>
+         </index>
+         <index name="index_idsite_servertime" unique="false">
+            <column ascending="true" name="idsite"/>
+            <column ascending="true" name="server_time"/>
+         </index>
+      </table>
+      <table catalog="matomo" name="matomo_log_link_visit_action" numRows="0" remarks="" type="TABLE">
+         <column autoUpdated="true" defaultValue="null" digits="0" id="0" name="idlink_va" nullable="false" remarks="" size="20" type="BIGINT UNSIGNED" typeCode="-5">
+            <child catalog="matomo" column="idlink_va" foreignKey="Implied Constraint" implied="true" onDeleteCascade="false" table="matomo_log_conversion"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="idsite" nullable="false" remarks="" size="10" type="INT UNSIGNED" typeCode="4">
+            <parent catalog="matomo" column="idsite" foreignKey="Implied Constraint" implied="true" onDeleteCascade="false" table="matomo_site"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="idvisitor" nullable="false" remarks="" size="8" type="BINARY" typeCode="-2"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="idvisit" nullable="false" remarks="" size="20" type="BIGINT UNSIGNED" typeCode="-5">
+            <parent catalog="matomo" column="idvisit" foreignKey="Implied Constraint" implied="true" onDeleteCascade="false" table="matomo_log_visit"/>
+         </column>
+         <column autoUpdated="false" defaultValue="0" digits="0" id="4" name="idaction_url_ref" nullable="true" remarks="" size="10" type="INT UNSIGNED" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="5" name="idaction_name_ref" nullable="true" remarks="" size="10" type="INT UNSIGNED" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="6" name="custom_float" nullable="true" remarks="" size="12" type="FLOAT" typeCode="7"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="7" name="server_time" nullable="false" remarks="" size="19" type="DATETIME" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="8" name="idpageview" nullable="true" remarks="" size="6" type="CHAR" typeCode="1"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="9" name="interaction_position" nullable="true" remarks="" size="5" type="SMALLINT UNSIGNED" typeCode="5"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="10" name="idaction_name" nullable="true" remarks="" size="10" type="INT UNSIGNED" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="11" name="idaction_url" nullable="true" remarks="" size="10" type="INT UNSIGNED" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="12" name="time_spent_ref_action" nullable="true" remarks="" size="10" type="INT UNSIGNED" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="13" name="idaction_event_action" nullable="true" remarks="" size="10" type="INT UNSIGNED" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="14" name="idaction_event_category" nullable="true" remarks="" size="10" type="INT UNSIGNED" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="15" name="idaction_content_interaction" nullable="true" remarks="" size="10" type="INT UNSIGNED" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="16" name="idaction_content_name" nullable="true" remarks="" size="10" type="INT UNSIGNED" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="17" name="idaction_content_piece" nullable="true" remarks="" size="10" type="INT UNSIGNED" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="18" name="idaction_content_target" nullable="true" remarks="" size="10" type="INT UNSIGNED" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="19" name="custom_var_k1" nullable="true" remarks="" size="200" type="VARCHAR" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="20" name="custom_var_v1" nullable="true" remarks="" size="200" type="VARCHAR" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="21" name="custom_var_k2" nullable="true" remarks="" size="200" type="VARCHAR" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="22" name="custom_var_v2" nullable="true" remarks="" size="200" type="VARCHAR" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="23" name="custom_var_k3" nullable="true" remarks="" size="200" type="VARCHAR" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="24" name="custom_var_v3" nullable="true" remarks="" size="200" type="VARCHAR" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="25" name="custom_var_k4" nullable="true" remarks="" size="200" type="VARCHAR" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="26" name="custom_var_v4" nullable="true" remarks="" size="200" type="VARCHAR" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="27" name="custom_var_k5" nullable="true" remarks="" size="200" type="VARCHAR" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="28" name="custom_var_v5" nullable="true" remarks="" size="200" type="VARCHAR" typeCode="12"/>
+         <primaryKey column="idlink_va" sequenceNumberInPK="1"/>
+         <index name="PRIMARY" unique="true">
+            <column ascending="true" name="idlink_va"/>
+         </index>
+         <index name="index_idsite_servertime" unique="false">
+            <column ascending="true" name="idsite"/>
+            <column ascending="true" name="server_time"/>
+         </index>
+         <index name="index_idvisit" unique="false">
+            <column ascending="true" name="idvisit"/>
+         </index>
+      </table>
+      <table catalog="matomo" name="matomo_log_profiling" numRows="0" remarks="" type="TABLE">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="query" nullable="false" remarks="" size="65535" type="TEXT" typeCode="-1"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="count" nullable="true" remarks="" size="10" type="INT UNSIGNED" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="sum_time_ms" nullable="true" remarks="" size="12" type="FLOAT" typeCode="7"/>
+         <column autoUpdated="true" defaultValue="null" digits="0" id="3" name="idprofiling" nullable="false" remarks="" size="20" type="BIGINT UNSIGNED" typeCode="-5"/>
+         <primaryKey column="idprofiling" sequenceNumberInPK="1"/>
+         <index name="PRIMARY" unique="true">
+            <column ascending="true" name="idprofiling"/>
+         </index>
+         <index name="query" unique="true">
+            <column ascending="true" name="query"/>
+         </index>
+      </table>
+      <table catalog="matomo" name="matomo_log_visit" numRows="0" remarks="" type="TABLE">
+         <column autoUpdated="true" defaultValue="null" digits="0" id="0" name="idvisit" nullable="false" remarks="" size="20" type="BIGINT UNSIGNED" typeCode="-5">
+            <child catalog="matomo" column="idvisit" foreignKey="Implied Constraint" implied="true" onDeleteCascade="false" table="matomo_log_link_visit_action"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="idsite" nullable="false" remarks="" size="10" type="INT UNSIGNED" typeCode="4">
+            <parent catalog="matomo" column="idsite" foreignKey="Implied Constraint" implied="true" onDeleteCascade="false" table="matomo_site"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="idvisitor" nullable="false" remarks="" size="8" type="BINARY" typeCode="-2"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="visit_last_action_time" nullable="false" remarks="" size="19" type="DATETIME" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="4" name="config_id" nullable="false" remarks="" size="8" type="BINARY" typeCode="-2"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="5" name="location_ip" nullable="false" remarks="" size="16" type="VARBINARY" typeCode="-3"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="6" name="user_id" nullable="true" remarks="" size="200" type="VARCHAR" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="7" name="visit_first_action_time" nullable="false" remarks="" size="19" type="DATETIME" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="8" name="visit_goal_buyer" nullable="true" remarks="" size="0" type="BIT" typeCode="-7"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="9" name="visit_goal_converted" nullable="true" remarks="" size="0" type="BIT" typeCode="-7"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="10" name="visitor_days_since_first" nullable="true" remarks="" size="5" type="SMALLINT UNSIGNED" typeCode="5"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="11" name="visitor_days_since_order" nullable="true" remarks="" size="5" type="SMALLINT UNSIGNED" typeCode="5"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="12" name="visitor_returning" nullable="true" remarks="" size="0" type="BIT" typeCode="-7"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="13" name="visitor_count_visits" nullable="false" remarks="" size="10" type="INT UNSIGNED" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="14" name="visit_entry_idaction_name" nullable="true" remarks="" size="10" type="INT UNSIGNED" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="15" name="visit_entry_idaction_url" nullable="true" remarks="" size="10" type="INT UNSIGNED" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="16" name="visit_exit_idaction_name" nullable="true" remarks="" size="10" type="INT UNSIGNED" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="0" digits="0" id="17" name="visit_exit_idaction_url" nullable="true" remarks="" size="10" type="INT UNSIGNED" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="18" name="visit_total_actions" nullable="true" remarks="" size="10" type="INT UNSIGNED" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="0" digits="0" id="19" name="visit_total_interactions" nullable="true" remarks="" size="5" type="SMALLINT UNSIGNED" typeCode="5"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="20" name="visit_total_searches" nullable="true" remarks="" size="5" type="SMALLINT UNSIGNED" typeCode="5"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="21" name="referer_keyword" nullable="true" remarks="" size="255" type="VARCHAR" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="22" name="referer_name" nullable="true" remarks="" size="70" type="VARCHAR" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="23" name="referer_type" nullable="true" remarks="" size="0" type="BIT" typeCode="-7"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="24" name="referer_url" nullable="true" remarks="" size="65535" type="TEXT" typeCode="-1"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="25" name="location_browser_lang" nullable="true" remarks="" size="20" type="VARCHAR" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="26" name="config_browser_engine" nullable="true" remarks="" size="10" type="VARCHAR" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="27" name="config_browser_name" nullable="true" remarks="" size="10" type="VARCHAR" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="28" name="config_browser_version" nullable="true" remarks="" size="20" type="VARCHAR" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="29" name="config_device_brand" nullable="true" remarks="" size="100" type="VARCHAR" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="30" name="config_device_model" nullable="true" remarks="" size="100" type="VARCHAR" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="31" name="config_device_type" nullable="true" remarks="" size="3" type="TINYINT" typeCode="-6"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="32" name="config_os" nullable="true" remarks="" size="3" type="CHAR" typeCode="1"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="33" name="config_os_version" nullable="true" remarks="" size="100" type="VARCHAR" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="34" name="visit_total_events" nullable="true" remarks="" size="10" type="INT UNSIGNED" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="35" name="visitor_localtime" nullable="true" remarks="" size="8" type="TIME" typeCode="92"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="36" name="visitor_days_since_last" nullable="true" remarks="" size="5" type="SMALLINT UNSIGNED" typeCode="5"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="37" name="config_resolution" nullable="true" remarks="" size="18" type="VARCHAR" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="38" name="config_cookie" nullable="true" remarks="" size="0" type="BIT" typeCode="-7"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="39" name="config_director" nullable="true" remarks="" size="0" type="BIT" typeCode="-7"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="40" name="config_flash" nullable="true" remarks="" size="0" type="BIT" typeCode="-7"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="41" name="config_gears" nullable="true" remarks="" size="0" type="BIT" typeCode="-7"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="42" name="config_java" nullable="true" remarks="" size="0" type="BIT" typeCode="-7"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="43" name="config_pdf" nullable="true" remarks="" size="0" type="BIT" typeCode="-7"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="44" name="config_quicktime" nullable="true" remarks="" size="0" type="BIT" typeCode="-7"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="45" name="config_realplayer" nullable="true" remarks="" size="0" type="BIT" typeCode="-7"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="46" name="config_silverlight" nullable="true" remarks="" size="0" type="BIT" typeCode="-7"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="47" name="config_windowsmedia" nullable="true" remarks="" size="0" type="BIT" typeCode="-7"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="48" name="visit_total_time" nullable="false" remarks="" size="10" type="INT UNSIGNED" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="49" name="location_city" nullable="true" remarks="" size="255" type="VARCHAR" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="50" name="location_country" nullable="true" remarks="" size="3" type="CHAR" typeCode="1"/>
+         <column autoUpdated="false" defaultValue="null" digits="6" id="51" name="location_latitude" nullable="true" remarks="" size="9" type="DECIMAL" typeCode="3"/>
+         <column autoUpdated="false" defaultValue="null" digits="6" id="52" name="location_longitude" nullable="true" remarks="" size="9" type="DECIMAL" typeCode="3"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="53" name="location_region" nullable="true" remarks="" size="3" type="CHAR" typeCode="1"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="54" name="custom_var_k1" nullable="true" remarks="" size="200" type="VARCHAR" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="55" name="custom_var_v1" nullable="true" remarks="" size="200" type="VARCHAR" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="56" name="custom_var_k2" nullable="true" remarks="" size="200" type="VARCHAR" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="57" name="custom_var_v2" nullable="true" remarks="" size="200" type="VARCHAR" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="58" name="custom_var_k3" nullable="true" remarks="" size="200" type="VARCHAR" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="59" name="custom_var_v3" nullable="true" remarks="" size="200" type="VARCHAR" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="60" name="custom_var_k4" nullable="true" remarks="" size="200" type="VARCHAR" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="61" name="custom_var_v4" nullable="true" remarks="" size="200" type="VARCHAR" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="62" name="custom_var_k5" nullable="true" remarks="" size="200" type="VARCHAR" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="63" name="custom_var_v5" nullable="true" remarks="" size="200" type="VARCHAR" typeCode="12"/>
+         <primaryKey column="idvisit" sequenceNumberInPK="1"/>
+         <index name="PRIMARY" unique="true">
+            <column ascending="true" name="idvisit"/>
+         </index>
+         <index name="index_idsite_config_datetime" unique="false">
+            <column ascending="true" name="idsite"/>
+            <column ascending="true" name="config_id"/>
+            <column ascending="true" name="visit_last_action_time"/>
+         </index>
+         <index name="index_idsite_datetime" unique="false">
+            <column ascending="true" name="idsite"/>
+            <column ascending="true" name="visit_last_action_time"/>
+         </index>
+         <index name="index_idsite_idvisitor" unique="false">
+            <column ascending="true" name="idsite"/>
+            <column ascending="true" name="idvisitor"/>
+         </index>
+      </table>
+      <table catalog="matomo" name="matomo_logger_message" numRows="0" remarks="" type="TABLE">
+         <column autoUpdated="true" defaultValue="null" digits="0" id="0" name="idlogger_message" nullable="false" remarks="" size="10" type="INT UNSIGNED" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="tag" nullable="true" remarks="" size="50" type="VARCHAR" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="timestamp" nullable="true" remarks="" size="19" type="TIMESTAMP" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="level" nullable="true" remarks="" size="16" type="VARCHAR" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="4" name="message" nullable="true" remarks="" size="65535" type="TEXT" typeCode="-1"/>
+         <primaryKey column="idlogger_message" sequenceNumberInPK="1"/>
+         <index name="PRIMARY" unique="true">
+            <column ascending="true" name="idlogger_message"/>
+         </index>
+      </table>
+      <table catalog="matomo" name="matomo_option" numRows="137" remarks="" type="TABLE">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="option_name" nullable="false" remarks="" size="255" type="VARCHAR" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="option_value" nullable="false" remarks="" size="2147483647" type="LONGTEXT" typeCode="-1"/>
+         <column autoUpdated="false" defaultValue="1" digits="0" id="2" name="autoload" nullable="false" remarks="" size="3" type="TINYINT" typeCode="-6"/>
+         <primaryKey column="option_name" sequenceNumberInPK="1"/>
+         <index name="PRIMARY" unique="true">
+            <column ascending="true" name="option_name"/>
+         </index>
+         <index name="autoload" unique="false">
+            <column ascending="true" name="autoload"/>
+         </index>
+      </table>
+      <table catalog="matomo" name="matomo_plugin_setting" numRows="0" remarks="" type="TABLE">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="plugin_name" nullable="false" remarks="" size="60" type="VARCHAR" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="setting_name" nullable="false" remarks="" size="255" type="VARCHAR" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="setting_value" nullable="false" remarks="" size="2147483647" type="LONGTEXT" typeCode="-1"/>
+         <column autoUpdated="false" defaultValue="0" digits="0" id="3" name="json_encoded" nullable="false" remarks="" size="3" type="TINYINT UNSIGNED" typeCode="-6"/>
+         <column autoUpdated="false" defaultValue="" digits="0" id="4" name="user_login" nullable="false" remarks="" size="100" type="VARCHAR" typeCode="12"/>
+         <column autoUpdated="true" defaultValue="null" digits="0" id="5" name="idplugin_setting" nullable="false" remarks="" size="20" type="BIGINT UNSIGNED" typeCode="-5"/>
+         <primaryKey column="idplugin_setting" sequenceNumberInPK="1"/>
+         <index name="PRIMARY" unique="true">
+            <column ascending="true" name="idplugin_setting"/>
+         </index>
+         <index name="plugin_name" unique="false">
+            <column ascending="true" name="plugin_name"/>
+            <column ascending="true" name="user_login"/>
+         </index>
+      </table>
+      <table catalog="matomo" name="matomo_privacy_logdata_anonymizations" numRows="0" remarks="" type="TABLE">
+         <column autoUpdated="true" defaultValue="null" digits="0" id="0" name="idlogdata_anonymization" nullable="false" remarks="" size="20" type="BIGINT UNSIGNED" typeCode="-5"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="idsites" nullable="true" remarks="" size="65535" type="TEXT" typeCode="-1"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="date_start" nullable="false" remarks="" size="19" type="DATETIME" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="date_end" nullable="false" remarks="" size="19" type="DATETIME" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="0" digits="0" id="4" name="anonymize_ip" nullable="false" remarks="" size="0" type="BIT" typeCode="-7"/>
+         <column autoUpdated="false" defaultValue="0" digits="0" id="5" name="anonymize_location" nullable="false" remarks="" size="0" type="BIT" typeCode="-7"/>
+         <column autoUpdated="false" defaultValue="0" digits="0" id="6" name="anonymize_userid" nullable="false" remarks="" size="0" type="BIT" typeCode="-7"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="7" name="unset_visit_columns" nullable="false" remarks="" size="65535" type="TEXT" typeCode="-1"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="8" name="unset_link_visit_action_columns" nullable="false" remarks="" size="65535" type="TEXT" typeCode="-1"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="9" name="output" nullable="true" remarks="" size="16777215" type="MEDIUMTEXT" typeCode="-1"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="10" name="scheduled_date" nullable="true" remarks="" size="19" type="DATETIME" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="11" name="job_start_date" nullable="true" remarks="" size="19" type="DATETIME" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="12" name="job_finish_date" nullable="true" remarks="" size="19" type="DATETIME" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="" digits="0" id="13" name="requester" nullable="false" remarks="" size="100" type="VARCHAR" typeCode="12"/>
+         <primaryKey column="idlogdata_anonymization" sequenceNumberInPK="1"/>
+         <index name="PRIMARY" unique="true">
+            <column ascending="true" name="idlogdata_anonymization"/>
+         </index>
+         <index name="job_start_date" unique="false">
+            <column ascending="true" name="job_start_date"/>
+         </index>
+      </table>
+      <table catalog="matomo" name="matomo_report" numRows="0" remarks="" type="TABLE">
+         <column autoUpdated="true" defaultValue="null" digits="0" id="0" name="idreport" nullable="false" remarks="" size="10" type="INT" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="idsite" nullable="false" remarks="" size="10" type="INT" typeCode="4">
+            <parent catalog="matomo" column="idsite" foreignKey="Implied Constraint" implied="true" onDeleteCascade="false" table="matomo_site"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="login" nullable="false" remarks="" size="100" type="VARCHAR" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="description" nullable="false" remarks="" size="255" type="VARCHAR" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="4" name="idsegment" nullable="true" remarks="" size="10" type="INT" typeCode="4">
+            <parent catalog="matomo" column="idsegment" foreignKey="Implied Constraint" implied="true" onDeleteCascade="false" table="matomo_segment"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="5" name="period" nullable="false" remarks="" size="10" type="VARCHAR" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="0" digits="0" id="6" name="hour" nullable="false" remarks="" size="3" type="TINYINT" typeCode="-6"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="7" name="type" nullable="false" remarks="" size="10" type="VARCHAR" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="8" name="format" nullable="false" remarks="" size="10" type="VARCHAR" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="9" name="reports" nullable="false" remarks="" size="65535" type="TEXT" typeCode="-1"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="10" name="parameters" nullable="true" remarks="" size="65535" type="TEXT" typeCode="-1"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="11" name="ts_created" nullable="true" remarks="" size="19" type="TIMESTAMP" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="12" name="ts_last_sent" nullable="true" remarks="" size="19" type="TIMESTAMP" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="0" digits="0" id="13" name="deleted" nullable="false" remarks="" size="3" type="TINYINT" typeCode="-6"/>
+         <column autoUpdated="false" defaultValue="0" digits="0" id="14" name="evolution_graph_within_period" nullable="false" remarks="" size="3" type="TINYINT" typeCode="-6"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="15" name="evolution_graph_period_n" nullable="false" remarks="" size="10" type="INT" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="16" name="period_param" nullable="true" remarks="" size="10" type="VARCHAR" typeCode="12"/>
+         <primaryKey column="idreport" sequenceNumberInPK="1"/>
+         <index name="PRIMARY" unique="true">
+            <column ascending="true" name="idreport"/>
+         </index>
+      </table>
+      <table catalog="matomo" name="matomo_report_subscriptions" numRows="0" remarks="" type="TABLE">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="idreport" nullable="false" remarks="" size="10" type="INT" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="token" nullable="true" remarks="" size="100" type="VARCHAR" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="email" nullable="false" remarks="" size="100" type="VARCHAR" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="CURRENT_TIMESTAMP" digits="0" id="3" name="ts_subscribed" nullable="false" remarks="" size="19" type="TIMESTAMP" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="4" name="ts_unsubscribed" nullable="true" remarks="" size="19" type="TIMESTAMP" typeCode="93"/>
+         <primaryKey column="email" sequenceNumberInPK="1"/>
+         <primaryKey column="idreport" sequenceNumberInPK="2"/>
+         <index name="PRIMARY" unique="true">
+            <column ascending="true" name="idreport"/>
+            <column ascending="true" name="email"/>
+         </index>
+         <index name="unique_token" unique="true">
+            <column ascending="true" name="token"/>
+         </index>
+      </table>
+      <table catalog="matomo" name="matomo_segment" numRows="0" remarks="" type="TABLE">
+         <column autoUpdated="true" defaultValue="null" digits="0" id="0" name="idsegment" nullable="false" remarks="" size="10" type="INT" typeCode="4">
+            <child catalog="matomo" column="idsegment" foreignKey="Implied Constraint" implied="true" onDeleteCascade="false" table="matomo_report"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="name" nullable="false" remarks="" size="255" type="VARCHAR" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="definition" nullable="false" remarks="" size="65535" type="TEXT" typeCode="-1"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="login" nullable="false" remarks="" size="100" type="VARCHAR" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="0" digits="0" id="4" name="enable_all_users" nullable="false" remarks="" size="3" type="TINYINT" typeCode="-6"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="5" name="enable_only_idsite" nullable="true" remarks="" size="10" type="INT" typeCode="4">
+            <parent catalog="matomo" column="idsite" foreignKey="Implied Constraint" implied="true" onDeleteCascade="false" table="matomo_site"/>
+         </column>
+         <column autoUpdated="false" defaultValue="0" digits="0" id="6" name="auto_archive" nullable="false" remarks="" size="3" type="TINYINT" typeCode="-6"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="7" name="ts_created" nullable="true" remarks="" size="19" type="TIMESTAMP" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="8" name="ts_last_edit" nullable="true" remarks="" size="19" type="TIMESTAMP" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="0" digits="0" id="9" name="deleted" nullable="false" remarks="" size="3" type="TINYINT" typeCode="-6"/>
+         <primaryKey column="idsegment" sequenceNumberInPK="1"/>
+         <index name="PRIMARY" unique="true">
+            <column ascending="true" name="idsegment"/>
+         </index>
+      </table>
+      <table catalog="matomo" name="matomo_sequence" numRows="1" remarks="" type="TABLE">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="name" nullable="false" remarks="" size="120" type="VARCHAR" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="value" nullable="false" remarks="" size="20" type="BIGINT UNSIGNED" typeCode="-5"/>
+         <primaryKey column="name" sequenceNumberInPK="1"/>
+         <index name="PRIMARY" unique="true">
+            <column ascending="true" name="name"/>
+         </index>
+      </table>
+      <table catalog="matomo" name="matomo_session" numRows="1" remarks="" type="TABLE">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="id" nullable="false" remarks="" size="255" type="VARCHAR" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="modified" nullable="true" remarks="" size="10" type="INT" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="lifetime" nullable="true" remarks="" size="10" type="INT" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="data" nullable="true" remarks="" size="65535" type="TEXT" typeCode="-1"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="PRIMARY" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+      </table>
+      <table catalog="matomo" name="matomo_site" numRows="1" remarks="" type="TABLE">
+         <column autoUpdated="true" defaultValue="null" digits="0" id="0" name="idsite" nullable="false" remarks="" size="10" type="INT UNSIGNED" typeCode="4">
+            <child catalog="matomo" column="idsite" foreignKey="Implied Constraint" implied="true" onDeleteCascade="false" table="matomo_access"/>
+            <child catalog="matomo" column="idsite" foreignKey="Implied Constraint" implied="true" onDeleteCascade="false" table="matomo_archive_blob_2019_12"/>
+            <child catalog="matomo" column="idsite" foreignKey="Implied Constraint" implied="true" onDeleteCascade="false" table="matomo_archive_numeric_2019_12"/>
+            <child catalog="matomo" column="idsite" foreignKey="Implied Constraint" implied="true" onDeleteCascade="false" table="matomo_log_conversion"/>
+            <child catalog="matomo" column="idsite" foreignKey="Implied Constraint" implied="true" onDeleteCascade="false" table="matomo_log_conversion_item"/>
+            <child catalog="matomo" column="idsite" foreignKey="Implied Constraint" implied="true" onDeleteCascade="false" table="matomo_log_link_visit_action"/>
+            <child catalog="matomo" column="idsite" foreignKey="Implied Constraint" implied="true" onDeleteCascade="false" table="matomo_log_visit"/>
+            <child catalog="matomo" column="idsite" foreignKey="Implied Constraint" implied="true" onDeleteCascade="false" table="matomo_report"/>
+            <child catalog="matomo" column="enable_only_idsite" foreignKey="Implied Constraint" implied="true" onDeleteCascade="false" table="matomo_segment"/>
+            <child catalog="matomo" column="idsite" foreignKey="Implied Constraint" implied="true" onDeleteCascade="false" table="matomo_site_setting"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="name" nullable="false" remarks="" size="90" type="VARCHAR" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="main_url" nullable="false" remarks="" size="255" type="VARCHAR" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="ts_created" nullable="true" remarks="" size="19" type="TIMESTAMP" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="0" digits="0" id="4" name="ecommerce" nullable="true" remarks="" size="3" type="TINYINT" typeCode="-6"/>
+         <column autoUpdated="false" defaultValue="1" digits="0" id="5" name="sitesearch" nullable="true" remarks="" size="3" type="TINYINT" typeCode="-6"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="6" name="sitesearch_keyword_parameters" nullable="false" remarks="" size="65535" type="TEXT" typeCode="-1"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="7" name="sitesearch_category_parameters" nullable="false" remarks="" size="65535" type="TEXT" typeCode="-1"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="8" name="timezone" nullable="false" remarks="" size="50" type="VARCHAR" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="9" name="currency" nullable="false" remarks="" size="3" type="CHAR" typeCode="1"/>
+         <column autoUpdated="false" defaultValue="0" digits="0" id="10" name="exclude_unknown_urls" nullable="true" remarks="" size="0" type="BIT" typeCode="-7"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="11" name="excluded_ips" nullable="false" remarks="" size="65535" type="TEXT" typeCode="-1"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="12" name="excluded_parameters" nullable="false" remarks="" size="65535" type="TEXT" typeCode="-1"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="13" name="excluded_user_agents" nullable="false" remarks="" size="65535" type="TEXT" typeCode="-1"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="14" name="group" nullable="false" remarks="" size="250" type="VARCHAR" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="15" name="type" nullable="false" remarks="" size="255" type="VARCHAR" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="0" digits="0" id="16" name="keep_url_fragment" nullable="false" remarks="" size="3" type="TINYINT" typeCode="-6"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="17" name="creator_login" nullable="true" remarks="" size="100" type="VARCHAR" typeCode="12"/>
+         <primaryKey column="idsite" sequenceNumberInPK="1"/>
+         <index name="PRIMARY" unique="true">
+            <column ascending="true" name="idsite"/>
+         </index>
+      </table>
+      <table catalog="matomo" name="matomo_site_setting" numRows="0" remarks="" type="TABLE">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="idsite" nullable="false" remarks="" size="10" type="INT UNSIGNED" typeCode="4">
+            <parent catalog="matomo" column="idsite" foreignKey="Implied Constraint" implied="true" onDeleteCascade="false" table="matomo_site"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="plugin_name" nullable="false" remarks="" size="60" type="VARCHAR" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="setting_name" nullable="false" remarks="" size="255" type="VARCHAR" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="setting_value" nullable="false" remarks="" size="2147483647" type="LONGTEXT" typeCode="-1"/>
+         <column autoUpdated="false" defaultValue="0" digits="0" id="4" name="json_encoded" nullable="false" remarks="" size="3" type="TINYINT UNSIGNED" typeCode="-6"/>
+         <column autoUpdated="true" defaultValue="null" digits="0" id="5" name="idsite_setting" nullable="false" remarks="" size="20" type="BIGINT UNSIGNED" typeCode="-5"/>
+         <primaryKey column="idsite_setting" sequenceNumberInPK="1"/>
+         <index name="PRIMARY" unique="true">
+            <column ascending="true" name="idsite_setting"/>
+         </index>
+         <index name="idsite" unique="false">
+            <column ascending="true" name="idsite"/>
+            <column ascending="true" name="plugin_name"/>
+         </index>
+      </table>
+      <table catalog="matomo" name="matomo_site_url" numRows="0" remarks="" type="TABLE">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="idsite" nullable="false" remarks="" size="10" type="INT UNSIGNED" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="url" nullable="false" remarks="" size="255" type="VARCHAR" typeCode="12"/>
+         <primaryKey column="idsite" sequenceNumberInPK="1"/>
+         <primaryKey column="url" sequenceNumberInPK="2"/>
+         <index name="PRIMARY" unique="true">
+            <column ascending="true" name="idsite"/>
+            <column ascending="true" name="url"/>
+         </index>
+      </table>
+      <table catalog="matomo" name="matomo_tracking_failure" numRows="0" remarks="" type="TABLE">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="idsite" nullable="false" remarks="" size="20" type="BIGINT UNSIGNED" typeCode="-5"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="idfailure" nullable="false" remarks="" size="5" type="SMALLINT UNSIGNED" typeCode="5"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="date_first_occurred" nullable="false" remarks="" size="19" type="DATETIME" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="request_url" nullable="false" remarks="" size="16777215" type="MEDIUMTEXT" typeCode="-1"/>
+         <primaryKey column="idfailure" sequenceNumberInPK="1"/>
+         <primaryKey column="idsite" sequenceNumberInPK="2"/>
+         <index name="PRIMARY" unique="true">
+            <column ascending="true" name="idsite"/>
+            <column ascending="true" name="idfailure"/>
+         </index>
+      </table>
+      <table catalog="matomo" name="matomo_twofactor_recovery_code" numRows="0" remarks="" type="TABLE">
+         <column autoUpdated="true" defaultValue="null" digits="0" id="0" name="idrecoverycode" nullable="false" remarks="" size="20" type="BIGINT UNSIGNED" typeCode="-5"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="login" nullable="false" remarks="" size="100" type="VARCHAR" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="recovery_code" nullable="false" remarks="" size="40" type="VARCHAR" typeCode="12"/>
+         <primaryKey column="idrecoverycode" sequenceNumberInPK="1"/>
+         <index name="PRIMARY" unique="true">
+            <column ascending="true" name="idrecoverycode"/>
+         </index>
+      </table>
+      <table catalog="matomo" name="matomo_user" numRows="2" remarks="" type="TABLE">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="login" nullable="false" remarks="" size="100" type="VARCHAR" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="password" nullable="false" remarks="" size="255" type="VARCHAR" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="alias" nullable="false" remarks="" size="45" type="VARCHAR" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="email" nullable="false" remarks="" size="100" type="VARCHAR" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="" digits="0" id="4" name="twofactor_secret" nullable="false" remarks="" size="40" type="VARCHAR" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="5" name="token_auth" nullable="false" remarks="" size="32" type="CHAR" typeCode="1"/>
+         <column autoUpdated="false" defaultValue="0" digits="0" id="6" name="superuser_access" nullable="false" remarks="" size="3" type="TINYINT UNSIGNED" typeCode="-6"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="7" name="date_registered" nullable="true" remarks="" size="19" type="TIMESTAMP" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="8" name="ts_password_modified" nullable="true" remarks="" size="19" type="TIMESTAMP" typeCode="93"/>
+         <primaryKey column="login" sequenceNumberInPK="1"/>
+         <index name="PRIMARY" unique="true">
+            <column ascending="true" name="login"/>
+         </index>
+         <index name="uniq_keytoken" unique="true">
+            <column ascending="true" name="token_auth"/>
+         </index>
+      </table>
+      <table catalog="matomo" name="matomo_user_dashboard" numRows="0" remarks="" type="TABLE">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="login" nullable="false" remarks="" size="100" type="VARCHAR" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="iddashboard" nullable="false" remarks="" size="10" type="INT" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="name" nullable="true" remarks="" size="100" type="VARCHAR" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="layout" nullable="false" remarks="" size="65535" type="TEXT" typeCode="-1"/>
+         <primaryKey column="iddashboard" sequenceNumberInPK="1"/>
+         <primaryKey column="login" sequenceNumberInPK="2"/>
+         <index name="PRIMARY" unique="true">
+            <column ascending="true" name="login"/>
+            <column ascending="true" name="iddashboard"/>
+         </index>
+      </table>
+      <table catalog="matomo" name="matomo_user_language" numRows="0" remarks="" type="TABLE">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="login" nullable="false" remarks="" size="100" type="VARCHAR" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="language" nullable="false" remarks="" size="10" type="VARCHAR" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="0" digits="0" id="2" name="use_12_hour_clock" nullable="false" remarks="" size="0" type="BIT" typeCode="-7"/>
+         <primaryKey column="login" sequenceNumberInPK="1"/>
+         <index name="PRIMARY" unique="true">
+            <column ascending="true" name="login"/>
+         </index>
+      </table>
+   </tables>
+</database>
